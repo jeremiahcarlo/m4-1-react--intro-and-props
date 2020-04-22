@@ -1,31 +1,54 @@
 import React from 'react';
 
-import "./ChatMessage.css";
+import Avatar from './Avatar';
 
-function ChatMessage(props) {
-    console.log("chat+MessageProps", props);
-    if (props.messageType === 'sent') {
-        return( 
-        <div>
-            <p>{props.body}</p>
-        </div>)
-    } else if (props.messageType === 'received') {
-        return(
-        <div>
-            <img src={props.user.avatar}/>
-            <p>{props.user.username}</p>
-            <p>{props.body}</p>
-        </div>)
-    }
+import './ChatMessage.css';
+
+const bubbleTipSentSrc = '/assets/tip-sent.svg';
+const bubbleTipReceivedSrc = '/assets/tip-received.svg';
+
+function SentMessage(props) {
+return (
+    <div className="chat-message-wrapper sent">
+        <div className="chat-message">
+        {props.message.body}
+        <img
+          alt=""
+          role="presentation"
+          className="tip"
+          src={bubbleTipSentSrc}
+        />
+      </div>
+    </div>
+  );
 }
 
+function ReceivedMessage(props) {
+  return (
+    <div className="chat-message-wrapper received">
+      <Avatar size={36} user={props.message.user} />
+      <div className="name-and-message">
+        <div className="author">{props.message.user.username}</div>
+        <div className="chat-message">
+          {props.message.body}
+          <img
+            alt=""
+            role="presentation"
+            className="tip"
+            src={bubbleTipReceivedSrc}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ChatMessage(props) {
+if (props.messageType === 'sent') {
+    return <SentMessage message={props.message} />;
+  } else {
+    return <ReceivedMessage message={props.message} />;
+  }
+}
 
 export default ChatMessage;
-
-//   function ChatMessage(props) {
-//     console.log("chat+MessageProps", props);
-//     return <div>
-//         <img src={props.singleMessage.user.avatar}/>
-//         <p>{props.singleMessage.user.username}</p>
-//         <p>{props.singleMessage.body}</p>
-//         </div>

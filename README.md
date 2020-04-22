@@ -225,7 +225,8 @@ function App(props) {
       <Footer />
     </div>
   );
-}
+}  
+  
 ```
 
 Creating React elements (eg. `<ChatStream>`) is like calling a function, and props are like the _arguments_ for that function. If we don't give the component the props that it needs, it will crash, in the same way as calling a function without passing it the arguments it needs.
