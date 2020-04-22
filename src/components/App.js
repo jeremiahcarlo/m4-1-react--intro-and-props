@@ -9,8 +9,14 @@ import './App.css';
 function App(props) {
   return (
     <div className="wrapper">
-      <Header />
-      <ChatStream />
+      <Header
+        currentUser={props.currentUser}
+        participants={props.conversation.participants}
+      />
+      <ChatStream
+        currentUser={props.currentUser}
+        messages={props.conversation.messages}
+      />
       <Footer />
     </div>
   );

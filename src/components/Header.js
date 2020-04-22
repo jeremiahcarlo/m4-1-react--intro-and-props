@@ -1,9 +1,22 @@
-import React from "react";
+import React from 'react';
 
-import "./Header.css";
+import Avatar from './Avatar';
+
+import './Header.css';
 
 function Header(props) {
-  return <header>{/* Your code here! */}</header>;
+  return (
+    <header>
+      {props.participants
+        .filter(participant => participant !== props.currentUser)
+        .map(participant => (
+          <div className="participant">
+            <Avatar size={48} user={participant} />
+            <div className="username">{participant.username}</div>
+          </div>
+        ))}
+    </header>
+  );
 }
 
 export default Header;
